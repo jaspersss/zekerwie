@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZekerWie.nl — Zeker weten wie je aan de lijn hebt</title>
+  <link rel="stylesheet" href="style.css?v=7">
+</head>
+<body>
+  <div class="page-shell">
+    <main class="workspace">
+      <!-- Linkerkolom: uitleg, instellingen & privacy -->
+      <section class="left-panel">
+        <div class="hero">
+          <span class="site-badge">Offline &amp; privé codekaartje</span>
+          <h1>ZekerWie.nl</h1>
+          <p class="subtitle">
+            Weet altijd zeker dat je echt met een familielid belt. Maak een persoonlijk codekaartje met 10 herkenbare iconen en 31 dagen, en download het direct als drukklare PDF.
+          </p>
+        </div>
+
+        <div class="control-panel">
+          <label class="title-field">
+            <span>Titel op het kaartje</span>
+            <input
+              type="text"
+              id="cardTitleInput"
+              value=""
+              maxlength="40"
+              placeholder="Geef de kaart een naam (bijv. Familie De Vries — 2027)"
+            >
+          </label>
+
+          <div class="button-stack">
+            <button type="button" id="randomizeBtn" class="btn btn-primary">
+              Genereer willekeurige getallen
+            </button>
+            <button type="button" id="mobilePreviewBtn" class="btn btn-secondary mobile-only-btn" aria-expanded="false">
+              Preview kaartje
+            </button>
+            <div class="mobile-preview-drawer" id="mobilePreviewDrawer" aria-hidden="true">
+              <div class="mobile-preview-inner" id="mobilePreviewSlot"></div>
+            </div>
+            <button type="button" id="downloadPdfBtn" class="btn btn-secondary" disabled aria-expanded="false">
+              Download PDF
+            </button>
+            <div class="download-menu" id="downloadMenu" aria-hidden="true">
+              <button type="button" class="download-choice" data-pdf-format="a4">
+                <strong>4 kaartjes op één A4</strong>
+                <span>Standaard voor een gezin, met snijlijnen</span>
+              </button>
+              <button type="button" class="download-choice" data-pdf-format="a4-large">
+                <strong>1 groot kaartje op A4</strong>
+                <span>Extra grote cijfers en tekst (bijv. voor oma)</span>
+              </button>
+              <button type="button" class="download-choice" data-pdf-format="a6">
+                <strong>1 los A6-kaartje</strong>
+                <span>Ansichtkaartformaat (voorkant + achterkant)</span>
+              </button>
+            </div>
+          </div>
+
+          <p class="status-note" id="statusNote">
+            De tabel is bewust nog leeg. Klik op <strong>Genereer willekeurige getallen</strong> om jouw eigen unieke set op dit apparaat aan te maken.
+          </p>
+        </div>
+
+        <div class="info-stack">
+          <div class="info-card" data-accordion>
+            <button type="button" class="info-toggle" aria-expanded="false">
+              <span>100% privé &amp; zonder opslag</span>
+              <span class="info-chevron" aria-hidden="true"></span>
+            </button>
+            <div class="info-body">
+              <div class="info-body-inner">
+                <p>
+                  Alle getallen worden uitsluitend lokaal in jouw eigen browser aangemaakt. <strong>ZekerWie.nl</strong> gebruikt geen server, geen database, geen cookies, geen lokale opslag en geen statistieken. Zodra je deze pagina sluit of ververst, zijn de getallen definitief verdwenen.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="info-card" data-accordion>
+            <button type="button" class="info-toggle" aria-expanded="false">
+              <span>PDF-formaten: A4 (4×), A6 (1×) of A4 groot (1×)</span>
+              <span class="info-chevron" aria-hidden="true"></span>
+            </button>
+            <div class="info-body">
+              <div class="info-body-inner">
+                <p>
+                  De tabel start bewust leeg; pas na klikken op <strong>Genereer willekeurige getallen</strong> worden jouw unieke codes lokaal aangemaakt.<br>
+                  <strong>A4-PDF (4×):</strong> 4 identieke kaartjes op één A4 met snijlijnen exact in het midden (105 × 148,5 mm). Print dubbelzijdig (lange zijde) op 100% schaal.<br>
+                  <strong>A6-PDF (1×):</strong> 1 los kaartje (voorkant + achterkant) voor direct printen op A6-papier.<br>
+                  <strong>A4-PDF (1× groot):</strong> 1 kaartje uitvergroot over een heel A4, extra goed leesbaar voor wie grote cijfers prettig vindt.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Rechterkolom: enkelvoudig A6-kaartvoorbeeld met voorkant/achterkant wissel -->
+      <aside class="right-panel" id="rightPanel" aria-label="Voorbeeld van het kaartje">
+        <div class="preview-bar">
+          <div class="tab-group" role="tablist" aria-label="Kies zijde van het kaartje">
+            <button
+              type="button"
+              id="tabFront"
+              class="tab-btn is-active"
+              role="tab"
+              aria-selected="true"
+            >
+              Voorkant (codes)
+            </button>
+            <button
+              type="button"
+              id="tabBack"
+              class="tab-btn"
+              role="tab"
+              aria-selected="false"
+            >
+              Achterkant (uitleg)
+            </button>
+          </div>
+        </div>
+
+        <div class="card-stage is-empty" id="cardStage">
+          <!-- Enkele A6-kaart wordt via script.js ingevuld -->
+        </div>
+
+        <p class="preview-caption">
+          Voorbeeld op A6-verhouding. In de A4-PDF staan er 4 identieke kaartjes op één vel.
+        </p>
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        ZekerWie.nl — Maak je eigen authenticatiekaart, volledig lokaal in je browser.
+        <a
+          class="mit-badge"
+          href="https://github.com/jaspersss/zekerwie/blob/main/LICENSE"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="MIT-licentie bekijken"
+        >MIT</a>
+        <a
+          class="github-link"
+          href="https://github.com/jaspersss/zekerwie"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Bekijk broncode op GitHub"
+          title="Bekijk broncode op GitHub"
+        >
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+          </svg>
+        </a>
+      </p>
+    </footer>
+  </div>
+
+  <script src="pdf.js?v=5"></script>
+  <script src="script.js?v=5"></script>
+</body>
+</html>
