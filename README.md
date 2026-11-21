@@ -1,6 +1,6 @@
 # ZekerWie.nl — Authenticatiekaart voor familie & bekenden
 
-Ik heb dit projectje oorspronkelijk gebouwd omdat ik voor mijn eigen familie een simpele, betrouwbare manier zocht om aan de telefoon zeker te weten dat we echt elkaar spreken — geïnspireerd op de authenticatiekaartjes van vroeger uit het leger. Met de opkomst van AI-stemklonen en telefoonfraude leek het me mooi om deze tool ook voor iedereen beschikbaar te maken.
+Ik heb dit projectje oorspronkelijk gebouwd omdat ik voor mijn eigen familie een simpele, betrouwbare manier zocht om aan de telefoon zeker te weten dat we echt elkaar spreken — geïnspireerd op de authenticatiekaartjes van vroeger alleen dan makkelijker. Met de opkomst van AI-stemklonen en telefoonfraude leek het me mooi om deze tool ook voor iedereen beschikbaar te maken.
 
 Live gebruiken: **[zekerwie.nl](https://zekerwie.nl)**
 
