@@ -1,42 +1,44 @@
-# ZekerWie.nl — Authenticatiekaart voor familie & bekenden
+**English** | [Nederlands](README.nl.md)
 
-Ik heb dit projectje oorspronkelijk gebouwd omdat ik voor mijn eigen familie een simpele, betrouwbare manier zocht om aan de telefoon zeker te weten dat we echt elkaar spreken — geïnspireerd op de authenticatiekaartjes van vroeger alleen dan makkelijker. Met de opkomst van AI-stemklonen en telefoonfraude leek het me mooi om deze tool ook voor iedereen beschikbaar te maken.
+# ZekerWie.nl — Printable Family Authentication Cards
 
-Live gebruiken: **[zekerwie.nl](https://zekerwie.nl)**
+I originally built this small project because I wanted a simple, reliable way for my own family to verify that we are really talking to each other on the phone — inspired by classic military challenge-response authentication cards. With the rise of AI voice cloning and impersonation phone scams, I decided to make it open-source and available to everyone.
 
----
-
-## Hoe werkt het?
-
-1. **Vul een titel in** (bijvoorbeeld je familienaam) en klik op **Genereer willekeurige getallen**.
-2. **Download een PDF** in het gewenste formaat:
-   - **4 kaartjes op één A4** — standaard voor een gezin, met snijlijnen exact in het midden (`105 × 148,5 mm`).
-   - **1 groot kaartje op A4** — extra grote cijfers en tekst (handig voor bijv. opa of oma).
-   - **1 los A6-kaartje** — ansichtkaartformaat (voorkant + achterkant).
-3. **Print dubbelzijdig** (spiegelen over de lange zijde, schaal 100%) en knip de kaartjes uit.
-4. **Aan de telefoon:** Degene die wil controleren kiest één van de 10 iconen bovenaan. De ander kijkt bij de **dag van vandaag** (`1` t/m `31`) en noemt het getal op het kruispunt. Klopt het getal? Dan weet je zeker wie je aan de lijn hebt.
-5. **Extra veilig:** Streep een getal door nadat je het gebruikt hebt, zodat hetzelfde antwoord nooit een tweede keer gebruikt kan worden.
+Try it live: **[zekerwie.nl](https://zekerwie.nl)**
 
 ---
 
-## 100% privé & volledig lokaal
+## How It Works
 
-- **Geen server, geen database, geen cookies, geen statistieken.**
-- Alle getallen worden uitsluitend lokaal in jouw eigen browser gegenereerd via `window.crypto.getRandomValues()` (zonder dubbele getallen per rij).
-- De PDF-bestanden worden volledig lokaal in JavaScript opgebouwd ([pdf.js](pdf.js)), zonder externe libraries of netwerkverzoeken.
-- Zodra je het tabblad sluit of ververst, zijn alle getallen definitief verdwenen.
-
----
-
-## Zelf hosten
-
-Dit is een volledig statische website (HTML, CSS en JavaScript) zonder build-stap:
-
-1. Fork of download deze repository.
-2. Open `index.html` direct in je browser, of zet **GitHub Pages** aan op de `main` branch.
+1. **Enter a title** (for example, your family name) and click **Genereer willekeurige getallen** (Generate random numbers).
+2. **Download a print-ready PDF** in your preferred format:
+   - **4 cards on one A4 sheet** — standard family set with centered cut lines (`105 × 148.5 mm` each).
+   - **1 large card on A4** — extra-large numbers and text (great for grandparents or low-vision readers).
+   - **1 single A6 card** — postcard size (front + back).
+3. **Print double-sided** (flip on long edge, 100% scale) and cut along the dashed center lines.
+4. **On a call:** The person who wants to verify the caller picks one of the 10 recognizable icons at the top. The other person looks up **today's day of the month** (`1`–`31`) and reads the 2-digit number at that intersection.
+5. **Extra security:** Cross off each number after using it so the same code can never be reused.
 
 ---
 
-## Licentie
+## 100% Private & Client-Side
 
-Dit project valt onder de **MIT-licentie** — zie [LICENSE](LICENSE). Je mag de code vrij gebruiken, aanpassen en delen.
+- **No servers, no databases, no cookies, no analytics.**
+- All numbers are generated locally in your browser using `window.crypto.getRandomValues()` with rejection sampling and a Fisher-Yates shuffle (guaranteed no duplicate numbers per row).
+- PDFs are built directly in pure JavaScript ([pdf.js](pdf.js)) with zero external libraries or network requests.
+- Once you close or refresh the tab, the generated codes are gone forever.
+
+---
+
+## Self-Hosting
+
+This is a 100% static HTML, CSS, and vanilla JavaScript site with no build step:
+
+1. Fork or download this repository.
+2. Open `index.html` locally in any browser, or enable **GitHub Pages** on the `main` branch.
+
+---
+
+## License
+
+Licensed under the **MIT License** — see [LICENSE](LICENSE). Feel free to use, adapt, and share.
